@@ -11,14 +11,14 @@ CFLAGS = \
 	-x objective-c \
 	-arch x86_64 \
 	-fno-objc-arc \
-	-isysroot /Users/kkozlov/Downloads/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
+	-isysroot $(SYS_ROOT) \
 	-miphoneos-version-min=6.0 \
 	-I$(INCLUDES) \
 
 LDFLAGS = \
-	-isysroot /Users/kkozlov/Downloads/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
+	-isysroot $(SYS_ROOT) \
 	-mios-simulator-version-min=6.0 \
-	-L$(LIBARCLITE)\
+	-L$(LIBARCLITE) \
 	-larclite_iphonesimulator \
 	-F$(FRAMEWORKS) -framework Foundation -framework UIKit -framework CoreGraphics \
 	-fobjc-link-runtime \
@@ -29,6 +29,7 @@ SRCS = AppDelegate.m ViewController.m main.m
 OBJS = AppDelegate.o ViewController.o main.o
 NAME = App
 
+SYS_ROOT = /Users/kkozlov/Downloads/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
 XCODE_BASE = /Users/kkozlov/Downloads/Xcode.app/Contents
 SIMULATOR_BASE = $(XCODE_BASE)/Developer/Platforms/iPhoneSimulator.platform
 FRAMEWORKS = $(SIMULATOR_BASE)/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks
@@ -38,7 +39,7 @@ LIBARCLITE = $(XCODE_BASE)/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(LDFLAGS) $^ -o ./App.app/$@
+	$(CC) $(LDFLAGS) $^ -o ./$(NAME).app/$@
 
 $(OBJS) : $(SRCS)
 	$(CC) $(CFLAGS) -c $^
@@ -49,7 +50,7 @@ clean :
 	rm -f $(OBJS)
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f ./$(NAME).app/$(NAME)
 
 re : fclean all
 
