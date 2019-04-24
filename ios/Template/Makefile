@@ -24,9 +24,9 @@ LDFLAGS = \
 	-fobjc-link-runtime \
 	-Xlinker -objc_abi_version -Xlinker 2
 
-HDRS = AppDelegate.h ViewController.h CustomView.h
-SRCS = AppDelegate.m ViewController.m CustomView.m main.m
-OBJS = AppDelegate.o ViewController.o CustomView.o main.o
+HDRS = AppDelegate.h ViewController.h 
+SRCS = AppDelegate.m ViewController.m main.m
+OBJS = AppDelegate.o ViewController.o main.o
 NAME = App
 
 XCODE_BASE = /Users/kkozlov/Downloads/Xcode.app/Contents

@@ -11,9 +11,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchingOptions
 {
-  self.window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
+  self.window = [[[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+  self.window.rootViewController = [[[ViewController alloc] init] autorelease];
   [self.window makeKeyAndVisible];
-  self.window.rootViewController = [[ViewController alloc] init];
   return (YES);
 }
 
