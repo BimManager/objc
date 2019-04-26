@@ -2,11 +2,12 @@
 
 launch()
 {
-    udid=$(simctl list | grep -m 1 " iPhone $1" | awk '{print $3}' | tr -d "()")
+    path=/Users/kkozlov/Downloads/Xcode.app//Contents/Developer/usr/bin
+    udid=$($path/simctl list | grep -m 1 " iPhone $1" | awk '{print $3}' | tr -d "()")
     echo "iPhone $1 : $udid"
-    simctl boot $udid
+    $path/simctl boot $udid
     echo $2
-    simctl install booted $2
+    $path/simctl install booted $2
     open -a Simulator --args -CurrentDeviceUDID $udid
 }
 
@@ -16,4 +17,5 @@ if [ $# != 2 ] ; then
 fi
 
 launch $1 $2
+
 
