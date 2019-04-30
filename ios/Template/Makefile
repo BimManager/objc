@@ -8,12 +8,14 @@
 CC = clang
 CFLAGS = \
 	-v \
+	-g \
 	-x objective-c \
 	-arch x86_64 \
 	-fno-objc-arc \
 	-isysroot $(SYS_ROOT) \
 	-miphoneos-version-min=6.0 \
 	-I$(INCLUDES) \
+	-I$(HDRDIR)
 
 LDFLAGS = \
 	-isysroot $(SYS_ROOT) \
@@ -24,10 +26,15 @@ LDFLAGS = \
 	-fobjc-link-runtime \
 	-Xlinker -objc_abi_version -Xlinker 2
 
-HDRS = AppDelegate.h ViewController.h 
-SRCS = AppDelegate.m ViewController.m main.m
-OBJS = AppDelegate.o ViewController.o main.o
+HDRS = AppDelegate.h MainViewController.h 
+OBJS = $(addprefix $(OBJDIR)/, AppDelegate.o MainViewController.o main.o)
 NAME = App
+
+HDRDIR = ./includes
+SRCDIR = ./srcs
+OBJDIR = ./objs
+
+vpath %.m : ./srcs
 
 SYS_ROOT = /Users/kkozlov/Downloads/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
 XCODE_BASE = /Users/kkozlov/Downloads/Xcode.app/Contents
@@ -39,10 +46,10 @@ LIBARCLITE = $(XCODE_BASE)/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(LDFLAGS) $^ -o ./$(NAME).app/$@
+	$(CC) $(LDFLAGS) $^ -o ./$@.app/$@
 
-$(OBJS) : $(SRCS)
-	$(CC) $(CFLAGS) -c $^
+$(OBJDIR)/%.o : %.m
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY : all clean fclean re
 
@@ -69,3 +76,4 @@ re : fclean all
 	-F$(FRAMEWORKS) -framework Foundation -framework UIKit -framework CoreGraphics \
 	-fobjc-link-runtime \
 	-Xlinker -objc_abi_version -Xlinker 2
+
