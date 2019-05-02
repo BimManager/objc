@@ -9,6 +9,7 @@ launch()
     echo $2
     $path/simctl install booted $2
     open -a Simulator --args -CurrentDeviceUDID $udid
+    tail -f ~/Library/Logs/CoreSimulator/*/system.log
 }
 
 if [ $# != 2 ] ; then
