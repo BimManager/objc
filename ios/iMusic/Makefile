@@ -26,8 +26,8 @@ LDFLAGS = \
 	-fobjc-link-runtime \
 	-Xlinker -objc_abi_version -Xlinker 2
 
-HDRS = AppDelegate.h MainViewController.h 
-OBJS = $(addprefix $(OBJDIR)/, AppDelegate.o MainViewController.o main.o)
+HDRS = AppDelegate.h MainViewController.h Artist.h Album.h
+OBJS = $(addprefix $(OBJDIR)/, AppDelegate.o MainViewController.o Artist.o Album.o main.o)
 NAME = iMusic
 
 HDRDIR = ./includes
