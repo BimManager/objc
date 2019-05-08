@@ -1,6 +1,6 @@
 /*
  *	MainViewController.h
- *	APP
+ *	APP_NAME
  *	Created by Kirill Kozlov on 4/22/19
  *	Copyright 2019 Kirill Kozlov. All rights reserved.
  */

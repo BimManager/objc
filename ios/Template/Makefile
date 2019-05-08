@@ -15,7 +15,8 @@ CFLAGS = \
 	-isysroot $(SYS_ROOT) \
 	-miphoneos-version-min=6.0 \
 	-I$(INCLUDES) \
-	-I$(HDRDIR)
+	-I$(HDRDIR) \
+	-DDEBUG=1 
 
 LDFLAGS = \
 	-isysroot $(SYS_ROOT) \
@@ -36,7 +37,7 @@ OBJDIR = ./objs
 
 vpath %.m : ./srcs
 
-SYS_ROOT = /Users/kkozlov/Downloads/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+SYS_ROOT = /Users/kkozlov/Downloads/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.1.sdk
 XCODE_BASE = /Users/kkozlov/Downloads/Xcode.app/Contents
 SIMULATOR_BASE = $(XCODE_BASE)/Developer/Platforms/iPhoneSimulator.platform
 FRAMEWORKS = $(SIMULATOR_BASE)/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks
