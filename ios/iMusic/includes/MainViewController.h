@@ -11,20 +11,16 @@
 # import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController
-{
-  UIImageView	*_logoView;
-  UIButton	*_viewListButton;
-  UIButton	*_aboutButton;
-}
 
 @property (strong, nonatomic) UIImageView *logoView;
 @property (strong, nonatomic) UIButton *viewListButton;
 @property (strong, nonatomic) UIButton *aboutButton;
 
-- (void)setConstraints;
+- (void)createSubviews;
+- (void)constraintSubviews;
 
-			    //- (void)onClickedViewListButton:(id)sender;
-			    //- (void)onClickedAboutButton:(id)sender;
+- (void)onClickedViewListButton:(id)sender;
+- (void)onClickedAboutButton:(id)sender;
 
 @end
 

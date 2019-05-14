@@ -15,19 +15,22 @@ CFLAGS = \
 	-isysroot $(SYS_ROOT) \
 	-miphoneos-version-min=6.0 \
 	-I$(INCLUDES) \
-	-I$(HDRDIR)
+	-I$(HDRDIR) \
+	-DDEBUG=1
 
 LDFLAGS = \
 	-isysroot $(SYS_ROOT) \
-	-mios-simulator-version-min=6.0 \
+	-mios-simulator-version-min=7.0 \
 	-L$(LIBARCLITE) \
 	-larclite_iphonesimulator \
 	-F$(FRAMEWORKS) -framework Foundation -framework UIKit -framework CoreGraphics \
 	-fobjc-link-runtime \
 	-Xlinker -objc_abi_version -Xlinker 2
 
-HDRS = AppDelegate.h MainViewController.h Artist.h Album.h
-OBJS = $(addprefix $(OBJDIR)/, AppDelegate.o MainViewController.o Artist.o Album.o main.o)
+HDRS = AppDelegate.h MainViewController.h \
+	MusicListViewController.h AboutViewController.h \
+	Artist.h Album.h
+OBJS = $(addprefix $(OBJDIR)/, AppDelegate.o MainViewController.o MusicListViewController.o AboutViewController.o Artist.o Album.o main.o)
 NAME = iMusic
 
 HDRDIR = ./includes
@@ -36,7 +39,7 @@ OBJDIR = ./objs
 
 vpath %.m : ./srcs
 
-SYS_ROOT = /Users/kkozlov/Downloads/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+SYS_ROOT = /Users/kkozlov/Downloads/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.1.sdk
 XCODE_BASE = /Users/kkozlov/Downloads/Xcode.app/Contents
 SIMULATOR_BASE = $(XCODE_BASE)/Developer/Platforms/iPhoneSimulator.platform
 FRAMEWORKS = $(SIMULATOR_BASE)/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks

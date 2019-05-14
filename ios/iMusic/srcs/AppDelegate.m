@@ -11,8 +11,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchingOptions
 {
+  id	controller;
+  id	navController;
+
   self.window = [[[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
-  self.window.rootViewController = [[[MainViewController alloc] init] autorelease];
+  controller = [[MainViewController alloc] init];
+  navController = [[UINavigationController alloc] initWithRootViewController:controller];
+  self.window.rootViewController = navController;
+  [controller release];
+  [navController release];
   [self.window makeKeyAndVisible];
   return (YES);
 }
