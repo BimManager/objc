@@ -31,6 +31,7 @@ HDRS = AppDelegate.h MainViewController.h \
 	MusicListViewController.h AboutViewController.h \
 	Artist.h Album.h
 OBJS = $(addprefix $(OBJDIR)/, AppDelegate.o MainViewController.o MusicListViewController.o AboutViewController.o Artist.o Album.o main.o)
+NIBS = LaunchScreen.storyboard
 NAME = iMusic
 
 HDRDIR = ./includes
@@ -45,8 +46,9 @@ SIMULATOR_BASE = $(XCODE_BASE)/Developer/Platforms/iPhoneSimulator.platform
 FRAMEWORKS = $(SIMULATOR_BASE)/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks
 INCLUDES = $(SIMULATOR_BASE)/Developer/SDKs/iPhoneSimulator.sdk/usr/include
 LIBARCLITE = $(XCODE_BASE)/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc
+IBTOOL_PATH = $(XCODE_BASE)/Developer/usr/bin
 
-all : $(NAME)
+all : $(NAME) $(NIBS)
 
 $(NAME) : $(OBJS)
 	$(CC) $(LDFLAGS) $^ -o ./$@.app/$@
@@ -54,13 +56,16 @@ $(NAME) : $(OBJS)
 $(OBJDIR)/%.o : %.m
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(NIBS) :
+	$(IBTOOL_PATH)/ibtool ./Base.lproj/$(NIBS) --compilation-directory ./$(NAME).app/Base.lproj
+
 .PHONY : all clean fclean re
 
 clean :
 	rm -f $(OBJS)
 
 fclean : clean
-	rm -f ./$(NAME).app/$(NAME)
+	rm -rf ./$(NAME).app/$(NAME) ./$(NAME).app/Base.lproj/$(NIBS)c
 
 re : fclean all
 

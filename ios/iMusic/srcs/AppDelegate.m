@@ -14,7 +14,7 @@
   id	controller;
   id	navController;
 
-  self.window = [[[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]] autorelease];
+  self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   controller = [[MainViewController alloc] init];
   navController = [[UINavigationController alloc] initWithRootViewController:controller];
   self.window.rootViewController = navController;

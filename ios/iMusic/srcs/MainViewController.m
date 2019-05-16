@@ -102,7 +102,7 @@
 
   constraints = [NSLayoutConstraint
 		  constraintsWithVisualFormat:
-		    @"V:|-75-[_logoView(==150)]-50-[_viewListButton]-50-[_aboutButton(==_viewListButton)]-100-|"
+		    @"V:|-75-[_logoView(==100@500)]-50-[_viewListButton(==45)]-50-[_aboutButton(==_viewListButton)]-75-|"
 		  options:0
 		  metrics:nil
 		  views:views];
@@ -117,21 +117,26 @@
   [NSLayoutConstraint activateConstraints:constraints];
   [self.view addConstraints:constraints];  
 
-  constraints = [NSLayoutConstraint
-		  constraintsWithVisualFormat:@"H:|-75-[_viewListButton]-75-|"
+  /*  constraints = [NSLayoutConstraint
+		  constraintsWithVisualFormat:@"H:|-[_viewListButton(==185)]-|"
 		  options:0
 		  metrics:nil
 		  views:views];
   [NSLayoutConstraint activateConstraints:constraints];
-  [self.view addConstraints:constraints];
+  [self.view addConstraints:constraints];*/
+  [self.viewListButton.centerXAnchor
+       constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
 
-  constraints = [NSLayoutConstraint
+  [self.aboutButton.centerXAnchor
+       constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+
+  /*  constraints = [NSLayoutConstraint
 		  constraintsWithVisualFormat:@"H:[_aboutButton(==_viewListButton)]-75-|"
 		  options:0
 		  metrics:nil
 		  views:views];
   [NSLayoutConstraint activateConstraints:constraints];
-  [self.view addConstraints:constraints];
+  [self.view addConstraints:constraints];*/
 }
 
 @end
