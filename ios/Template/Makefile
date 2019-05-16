@@ -29,7 +29,10 @@ LDFLAGS = \
 
 HDRS = AppDelegate.h MainViewController.h 
 OBJS = $(addprefix $(OBJDIR)/, AppDelegate.o MainViewController.o main.o)
+SBS  = $(addprefix ./Base.lproj/, LaunchScreen.storyboard)
+NIBS = *.nib
 NAME = App
+
 
 HDRDIR = ./includes
 SRCDIR = ./srcs
@@ -43,8 +46,9 @@ SIMULATOR_BASE = $(XCODE_BASE)/Developer/Platforms/iPhoneSimulator.platform
 FRAMEWORKS = $(SIMULATOR_BASE)/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks
 INCLUDES = $(SIMULATOR_BASE)/Developer/SDKs/iPhoneSimulator.sdk/usr/include
 LIBARCLITE = $(XCODE_BASE)/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc
+TOOLS = $(XCODE_BASE)/Developer/usr/bin
 
-all : $(NAME)
+all : $(NAME) $(NIBS)
 
 $(NAME) : $(OBJS)
 	$(CC) $(LDFLAGS) $^ -o ./$@.app/$@
@@ -52,13 +56,16 @@ $(NAME) : $(OBJS)
 $(OBJDIR)/%.o : %.m
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(NIBS) : $(SBS)
+	$(TOOLS)/ibtool $< --compilation-directory $(NAME).app/Base.lproj/
+
 .PHONY : all clean fclean re
 
 clean :
 	rm -f $(OBJS)
 
 fclean : clean
-	rm -f ./$(NAME).app/$(NAME)
+	rm -rf ./$(NAME).app/$(NAME) ./$(NAME).app/Base.lproj/LaunchScreen.storyboardc
 
 re : fclean all
 
