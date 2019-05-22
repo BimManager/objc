@@ -10,7 +10,10 @@
 
 # import <UIKit/UIKit.h>
 
-@interface Artist : NSObject
+# define ARTIST_ID_KEY @"ArtistArtistId"
+# define ARTIST_NAME_KEY @"ArtistArtistNameKey"
+
+@interface Artist : NSObject <NSCoding>
 
 @property (nonatomic, assign) NSUInteger artistId;
 @property (nonatomic, copy) NSString *artistName;

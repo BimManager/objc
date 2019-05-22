@@ -12,16 +12,28 @@
 
 # import "Artist.h"
 
-@interface Album : NSObject
+# define ALBUM_ID_KEY @"AlbumAlbumId"
+# define ALBUM_NAME_KEY @"AlbumAlbumName"
+# define IMAGE_URL_STRING_KEY @"AlbumImageURLString"
+# define PRICE_KEY @"AlbumPrice"
+# define ITUNES_URL_STRING_KEY @"AlbumITunesURLString"
+# define RELEASE_DATE_KEY @"AlbumReleaseDate"
+# define GENRE_KEY @"AlbumGenre"
+# define ARTIST_KEY @"AlbumArtist"
 
-@property (nonatomic, assign) NSUInteger albumId;
-@property (nonatomic, copy) NSString *albumName;
-@property (nonatomic, copy) NSString *imageURLString;
-@property (nonatomic, copy) NSString *price;
-@property (nonatomic, copy) NSString *iTunesURLString;
-@property (nonatomic, strong)NSDate *releaseDate;
-@property (nonatomic, copy) NSString *genre;
-@property (nonatomic, strong) Artist *artist;
+@interface Album : NSObject <NSCoding>
+
+@property (nonatomic, assign) NSUInteger	albumId;
+@property (nonatomic, copy) NSString		*albumName;
+@property (nonatomic, copy) NSString		*imageURLString;
+@property (nonatomic, copy) NSString		*price;
+@property (nonatomic, copy) NSString		*iTunesURLString;
+@property (nonatomic, strong)NSDate		*releaseDate;
+@property (nonatomic, copy) NSString		*genre;
+@property (nonatomic, strong) Artist		*artist;
+
++ (NSArray *)findAll;
+- (BOOL)save;
 
 @end
 

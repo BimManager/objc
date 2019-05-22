@@ -7,6 +7,10 @@
 
 #import "MusicListViewController.h"
 
+@interface MusicListViewController ()
+
+@end
+
 @implementation MusicListViewController
 
 - (void)loadView

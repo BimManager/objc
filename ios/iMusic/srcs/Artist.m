@@ -30,6 +30,22 @@
   return ([artist autorelease]);
 }
 
+/* NSCoding protocol adoption */
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+  [aCoder encodeInteger:_artistId
+	  forKey:ARTIST_ID_KEY];
+  [aCoder encodeObject:_artistName
+	  forKey:ARTIST_NAME_KEY];
+}
+
+- (id)initWithCoder:(NSCoder *)aCoder
+{
+  _artistId = [aCoder decodeIntegerForKey:ARTIST_ID_KEY];
+  _artistName = [aCoder decodeObjectForKey:ARTIST_NAME_KEY];
+  return (self);
+}
+
 - (NSString *)description
 {
   return ([NSString stringWithFormat:@"%lu - %@", self.artistId, self.artistName]);

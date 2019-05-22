@@ -70,9 +70,9 @@
 
   self.logoView.image = [UIImage imageNamed:@"logo"];
   [self.viewListButton setTitle:@"View List" forState:UIControlStateNormal];
-  self.viewListButton.backgroundColor = [UIColor grayColor];
+  //  self.viewListButton.backgroundColor = [UIColor grayColor];
   [self.aboutButton setTitle:@"About iMusic" forState:UIControlStateNormal];
-  self.aboutButton.backgroundColor = [UIColor grayColor];
+  //  self.aboutButton.backgroundColor = [UIColor grayColor];
   
   [self.viewListButton 
        addTarget:self
@@ -102,12 +102,12 @@
 
   constraints = [NSLayoutConstraint
 		  constraintsWithVisualFormat:
-		    @"V:|-75-[_logoView(==100@500)]-50-[_viewListButton(==45)]-50-[_aboutButton(==_viewListButton)]-75-|"
+		    @"V:|-75-[_logoView(==100@500)]-100-"
+		  "[_viewListButton(==45)]-25-[_aboutButton(==_viewListButton)]-100-|"
 		  options:0
 		  metrics:nil
 		  views:views];
   [NSLayoutConstraint activateConstraints:constraints];
-  [self.view addConstraints:constraints];
 
   constraints = [NSLayoutConstraint
 		  constraintsWithVisualFormat:@"H:|-50-[_logoView]-50-|"
@@ -115,28 +115,18 @@
 		  metrics:nil
 		  views:views];
   [NSLayoutConstraint activateConstraints:constraints];
-  [self.view addConstraints:constraints];  
 
-  /*  constraints = [NSLayoutConstraint
-		  constraintsWithVisualFormat:@"H:|-[_viewListButton(==185)]-|"
+  constraints = [NSLayoutConstraint
+		  constraintsWithVisualFormat:@"H:|-75-[_viewListButton]-75-|"
 		  options:0
 		  metrics:nil
 		  views:views];
   [NSLayoutConstraint activateConstraints:constraints];
-  [self.view addConstraints:constraints];*/
-  [self.viewListButton.centerXAnchor
-       constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
 
   [self.aboutButton.centerXAnchor
        constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-
-  /*  constraints = [NSLayoutConstraint
-		  constraintsWithVisualFormat:@"H:[_aboutButton(==_viewListButton)]-75-|"
-		  options:0
-		  metrics:nil
-		  views:views];
-  [NSLayoutConstraint activateConstraints:constraints];
-  [self.view addConstraints:constraints];*/
+  [self.aboutButton.widthAnchor 
+       constraintEqualToAnchor:self.viewListButton.widthAnchor].active = YES;
 }
 
 @end
